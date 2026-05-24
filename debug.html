@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debug | Trình Theo Dõi Thể Thao</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    style="
+      background-image: url(&quot;https://i.pinimg.com/originals/e2/8d/61/e28d61b0ce1b686bbd9c19b98912101f.gif&quot;);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    "
+  >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary" href="index.html"
+          >Calisthenics App</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="trangchu.html">Trang Chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="trangquanli.html">Quản Lý Nhật Ký</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="debug.html">Trang Debug</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-5">
+      <h2 class="border-bottom pb-2 mb-4 text-primary">
+        Trang Debug (Sửa lỗi Code)
+      </h2>
+
+      <div class="card p-4 shadow-sm mb-4 bg-light border-0">
+        <h5 class="mb-3 text-secondary">Mô phỏng Input Mật khẩu thực tế</h5>
+        <div class="input-group mb-3 w-50">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            value="secret123"
+          />
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            onclick="togglePass()"
+          >
+            Hiển thị/Ẩn
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="card p-4 shadow-sm mb-4 border-danger"
+        style="border-left: 5px solid #dc3545"
+      >
+        <h5 class="mb-3 text-danger fw-bold">
+          1. Đoạn mã lỗi ban đầu (Đề bài cung cấp)
+        </h5>
+        <p class="text-muted small">
+          <i
+            >*Lưu ý: Đoạn mã này bị lỗi logic ở câu lệnh điều kiện if khiến chức
+            năng hoạt động sai hoàn toàn.*</i
+          >
+        </p>
+        <pre class="bg-dark text-white p-3 rounded"><code>
+function togglePass() {
+    let passField = document.getElementById("password");
+    
+    // LỖI NẰM Ở ĐÂY: Sử dụng dấu '=' đơn là phép gán, không phải phép so sánh
+    if (passField.type = "password") { 
+        passField.type = "text";
+    } else {
+        passField.type = "password";
+    }
+}
+        </code></pre>
+      </div>
+
+      <div
+        class="card p-4 shadow-sm mb-4 border-success"
+        style="border-left: 5px solid #198754"
+      >
+        <h5 class="mb-3 text-success fw-bold">
+          2. Đoạn mã đã sửa lỗi hoàn chỉnh (Kèm giải thích chi tiết)
+        </h5>
+        <pre class="bg-dark text-white p-3 rounded"><code>
+// Định nghĩa hàm xử lý ẩn/hiện mật khẩu
+function togglePass() {
+    // Bước 1: Tìm và lấy ra thẻ input mật khẩu bằng ID 'password'
+    let passField = document.getElementById("password");
+    
+    // Bước 2: Kiểm tra nếu phần tử tồn tại trên trang thì mới xử lý tiếp
+    if (passField) {
+        
+        // ĐÃ SỬA LỖI: Thay thế dấu '=' thành dấu '===' (Toán tử so sánh nghiêm ngặt)
+        // GIẢI THÍCH: 
+        // - Lỗi cũ (passField.type = "password") vô tình biến câu lệnh thành phép GÁN giá trị "password" vào thuộc tính type. Phép gán này luôn trả về giá trị "truthy", khiến khối lệnh IF luôn luôn chạy và đổi thành dạng "text", khối ELSE không bao giờ được lọt vào.
+        // - Mã mới dùng '===' giúp so sánh chính xác xem type hiện tại ĐANG LÀ "password" hay không để chuyển đổi qua lại.
+        
+        if (passField.type === "password") {
+            // Nếu type đang là mật khẩu ẩn, tiến hành đổi thành 'text' để hiện chữ rõ ràng
+            passField.type = "text";
+        } else {
+            // Ngược lại, nếu đang hiện chữ, tiến hành che lại bằng cách đổi type về 'password'
+            passField.type = "password";
+        }
+    }
+}
+        </code></pre>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

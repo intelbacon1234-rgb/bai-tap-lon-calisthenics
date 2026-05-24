@@ -1,0 +1,43 @@
+#personal-photo {
+  max-width: 100%; /* Đảm bảo chiều rộng ảnh không bao giờ tràn vượt quá khung chứa bên ngoài */
+  height: auto; /* Tự động tính toán chiều cao theo tỉ lệ gốc của ảnh để tránh làm méo hình */
+  max-height: 400px; /* Khống chế chiều cao tối đa của ảnh ở mốc 400 pixel để cân đối giao diện */
+  object-fit: cover; /* Cắt cúp ảnh thông minh để lấp đầy khung hình mà không làm biến dạng hình ảnh */
+  border-radius: 12px; /* Bo tròn nhẹ 4 góc của bức ảnh tạo cảm giác mềm mại (12 pixel) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng đổ bóng mờ nhẹ phía sau ảnh tạo chiều sâu 3D */
+  border: 3px solid #0d6efd; /* Tạo đường viền dày 3 pixel bao quanh ảnh, màu xanh primary của Bootstrap */
+}
+
+/* Định dạng khối Jumbotron trang chủ mang phong cách thể thao, năng động */
+.jumbotron-custom {
+  /* Tạo màu nền dải chuyển màu mịn (Gradient) chéo góc từ xanh ngọc sang xanh chàm dịu mắt */
+  background: linear-gradient(135deg, #e0f7fa 0%, #e8eaf6 100%);
+  /* Tạo một đường thanh dọc dày 6 pixel màu xanh dương đậm ở lề bên trái để tạo điểm nhấn thiết kế */
+  border-left: 6px solid #0d6efd;
+}
+
+/* Tinh chỉnh nhãn chữ của Form cho màu sắc đậm đà rõ nét dễ nhìn */
+.form-label {
+  color: #333; /* Thiết lập mã màu xám sẫm gần như đen giúp tăng độ tương phản đọc chữ tốt hơn */
+}
+
+/* Định dạng khối hiển thị đoạn mã code sửa lỗi ở trang debug */
+pre {
+  margin-bottom: 0; /* Loại bỏ hoàn toàn khoảng cách căn lề dưới mặc định của thẻ pre */
+}
+
+/* 
+
+1. Selector (#personal-photo): Nhắm mục tiêu định dạng duy nhất vào phần tử HTML nào có ID tương ứng.
+2. Selector (.jumbotron-custom): Nhắm mục tiêu định dạng vào tất cả các phần tử có chung tên Class này.
+3. max-width: 100%: Thuộc tính sống còn làm giao diện Responsive co giãn tương thích màn hình di động.
+4. object-fit: cover: Thuộc tính xử lý căn chỉnh ảnh, giúp ảnh cân đối dù tỉ lệ khung chứa bị thay đổi.
+5. Con số '0 4px 8px rgba(0,0,0,0.1)': 
+   - 0: Độ lệch bóng theo trục ngang X.
+   - 4px: Độ lệch bóng theo trục dọc Y.
+   - 8px: Độ mờ nhòe (Blur) của bóng đổ.
+   - rgba(0,0,0,0.1): Màu của bóng đổ là màu đen với độ trong suốt là 10%.
+6. Con số '135deg': Quy định góc xoay hướng xiên của dải màu chuyển sắc Gradient (135 độ).
+7. Mã màu hex (#0d6efd, #333): Hệ màu thập lục phân quy định chính xác màu sắc hiển thị trên màn hình máy tính.
+==========================================================================================
+*/
